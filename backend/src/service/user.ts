@@ -1,8 +1,18 @@
 import { User } from "../model/user";
 import { hashSync } from "bcrypt";
 
-function getAllUsers() {
-  return User.find()
+async function getAllUsers() {
+  const users = await User.find()
+  return users.map(user => ({
+    email: user.email,
+    role: user.role
+  }))
+}
+
+function getUser(email: string) {
+  return User.findOne({
+    email
+  })
 }
 
 function addUser({ email, password, role }) {
@@ -15,4 +25,4 @@ function addUser({ email, password, role }) {
   })
 }
 
-export { getAllUsers, addUser }
+export { getAllUsers, addUser, getUser }
