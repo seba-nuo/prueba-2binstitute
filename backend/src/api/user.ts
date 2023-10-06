@@ -19,6 +19,7 @@ user.post('', zValidator(
   })
 ), async (c) => {
   const body = c.req.valid('json')
+  console.log("🤖 ~ file: user.ts:22 ~ ), ~ body:", body);
   try {
     await addUser(body);
     return c.json({
