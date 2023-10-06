@@ -1,15 +1,16 @@
+import bcrypt from 'bcrypt';
 import { User } from "../model/user";
 import { db } from "./db";
 
 const seedUsers = [
   {
     email: 'johndoe@example.com',
-    password: 'password123',
+    password: bcrypt.hashSync('password123', 10),
     role: 'Admin'
   },
   {
     email: 'foo@bar.com',
-    password: 'password123',
+    password: bcrypt.hashSync('password123', 10),
     role: 'User'
   }
 ]
