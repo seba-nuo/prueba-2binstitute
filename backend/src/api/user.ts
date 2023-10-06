@@ -5,13 +5,8 @@ import { getAllUsers, addUser } from "../service/user";
 import { jwt } from "hono/jwt";
 
 const user = new Hono()
-
-user.use('/auth/*', jwt({
-  secret: 'it-is-very-secret',
-}))
-
-user.get('auth/getAllUsers', async (c) => {
-  const payload = c.get('jwtPayload')
+// secret should be in a env
+user.get('', jwt({ secret: 'it-is-very-secret' }), async (c) => {
   const allUsers = await getAllUsers()
   return c.json(allUsers)
 })
