@@ -1,7 +1,7 @@
 import { User } from "../model/user";
 import { hashSync } from "bcrypt";
 
-function getUsers() {
+function getAllUsers() {
   return User.find()
 }
 
@@ -15,4 +15,4 @@ function addUser({ email, password, role }) {
   })
 }
 
-export { getUsers, addUser }
+export { getAllUsers, addUser }

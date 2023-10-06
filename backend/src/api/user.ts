@@ -1,12 +1,12 @@
 import { Hono } from "hono";
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
-import { getUsers, addUser } from "../service/user";
+import { getAllUsers, addUser } from "../service/user";
 
 const user = new Hono()
 
 user.get('', async (c) => {
-  const allUsers = await getUsers()
+  const allUsers = await getAllUsers()
   return c.json(allUsers)
 })
 
