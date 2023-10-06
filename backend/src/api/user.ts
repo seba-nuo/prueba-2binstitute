@@ -2,10 +2,16 @@ import { Hono } from "hono";
 import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
 import { getAllUsers, addUser } from "../service/user";
+import { jwt } from "hono/jwt";
 
 const user = new Hono()
 
-user.get('', async (c) => {
+user.use('/auth/*', jwt({
+  secret: 'it-is-very-secret',
+}))
+
+user.get('auth/getAllUsers', async (c) => {
+  const payload = c.get('jwtPayload')
   const allUsers = await getAllUsers()
   return c.json(allUsers)
 })
@@ -19,25 +25,24 @@ user.post('', zValidator(
   })
 ), async (c) => {
   const body = c.req.valid('json')
-  console.log("🤖 ~ file: user.ts:22 ~ ), ~ body:", body);
   try {
     await addUser(body);
     return c.json({
       'success': true,
     });
   } catch (e) {
-    if (e.code === 11000) {
+    const EMAIL_EXIST = 11000
+
+    if (e.code === EMAIL_EXIST) {
       return c.json({
         'success': false,
         'error': "email already exist",
       });
-    } else {
-      return c.json({
-        'success': false,
-        'error': 'server error'
-      })
     }
-
+    return c.json({
+      'success': false,
+      'error': 'server error'
+    })
   }
 })
 

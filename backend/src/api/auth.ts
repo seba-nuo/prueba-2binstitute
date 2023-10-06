@@ -2,22 +2,15 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { z } from 'zod'
 import { validateUser } from "../service/auth";
+import { authMiddleware } from "../middleware/auth";
 
 
 const auth = new Hono()
 
-auth.post('', zValidator(
-  'json',
-  z.object({
-    email: z.string().email(),
-    password: z.string(),
-  })
-), async (c) => {
-  const body = c.req.valid('json')
-  const isValid = await validateUser(body)
-  return c.json({
-    'success': isValid
-  })
+auth.post('', async (c) => {
+  const payload = c.get('jwtPayload')
+  console.log("🤖 ~ file: auth.ts:12 ~ auth.post ~ payload:", payload);
+  
 })
 
 export { auth }
