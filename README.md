@@ -2,14 +2,13 @@
 ## prerequisites
 node npm and mongoDB installed in its latest LTS versions.
 
-# Setups
-## frontend
+## Setup frontend
 - cd /frontend
 - npm ci
 - npm start
 - open http://localhost:4200/
 
-## backend
+## Setup backend
 - cd /backend
 - npm ci
 - npm run seed
