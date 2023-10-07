@@ -8,7 +8,7 @@ const user = new Hono()
 // secret should be in a env
 user.get('', jwt({ secret: 'it-is-very-secret' }), async (c) => {
   const allUsers = await getAllUsers()
-  return c.json(allUsers)
+  return c.json({ data: allUsers, success: true })
 })
 
 user.post('', zValidator(
