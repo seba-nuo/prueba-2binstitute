@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Response } from 'src/app/types/response';
 import { environment } from 'src/enviroments/enviroments';
 
 const authURL = `${environment.apiUrl}/auth`;
@@ -14,10 +15,10 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   verifyToken() {
-    return this.http.get(authURL, { headers: this.headers })
+    return this.http.get<Response>(authURL, { headers: this.headers })
   }
 
   findAllUsers() {
-    return this.http.get(userURL, { headers: this.headers })
+    return this.http.get<Response>(userURL, { headers: this.headers })
   }
 }
