@@ -25,7 +25,7 @@ export class LoginComponent {
       this.loginService.login(this.loginForm.value).subscribe(res => {
         if (res.success) {
           localStorage.setItem('token', res['token']);
-          this.router.navigate(['/home'])
+          this.router.navigate([''])
         } else {
           this.modalService.open(this.badRoleModal, { centered: true });
         }

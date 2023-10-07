@@ -5,12 +5,12 @@ import { HomeModule } from './modules/home/home.module';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => AuthModule),
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
       import('./modules/home/home-routing.module').then((m) => HomeModule),
   },

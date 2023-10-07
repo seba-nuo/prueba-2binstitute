@@ -18,12 +18,12 @@ export class HomeComponent {
     this.homeService.verifyToken().subscribe({
       next: (res) => {
         if (!res.success) {
-          this.router.navigate(["/login"])
+          this.router.navigate(["/auth/login"])
         }
       },
       error: () => {
         // errors thrown by jwt 
-        this.router.navigate(["/login"])
+        this.router.navigate(["/auth/login"])
       }
     });
 

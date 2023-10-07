@@ -26,7 +26,7 @@ export class RegisterComponent {
       this.registerService.registerUser(this.registrationForm.value).subscribe({
         next: res => {
           if (res.success) {
-            this.router.navigate(["/login"])
+            this.router.navigate(["/auth/login"])
           }
         },
         error: () => {
