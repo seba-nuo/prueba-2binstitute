@@ -26,13 +26,27 @@
 
 
 <!-- Modal (let-[something] is to define a local variable)-->
-<ng-template #modalContent let-modal>
+<ng-template #badInputModal let-modal>
   <div class="modal-header">
     <h5 class="modal-title text-danger">Login Error</h5>
     <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
   </div>
   <div class="modal-body">
     Bad inputs
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close()">Close</button>
+  </div>
+</ng-template>
+
+<!-- bad role -->
+<ng-template #badRoleModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title text-danger">Login Error</h5>
+    <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    The user does not have enought privileges to see this page.
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="modal.close()">Close</button>

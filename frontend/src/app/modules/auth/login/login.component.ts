@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @ViewChild('modalContent') modalContent: any;
+  @ViewChild('badInputModal') badInputModal: any;
+  @ViewChild('badRoleModal') badRoleModal: any;
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -25,10 +26,12 @@ export class LoginComponent {
         if (res.success) {
           localStorage.setItem('token', res['token']);
           this.router.navigate(['/home'])
+        } else {
+          this.modalService.open(this.badRoleModal, { centered: true });
         }
       })
     } else {
-      this.modalService.open(this.modalContent, { centered: true });
+      this.modalService.open(this.badInputModal, { centered: true });
     }
   }
 }

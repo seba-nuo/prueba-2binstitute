@@ -18,6 +18,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(user: User) {
-    return this.http.post<Response>(baseURL, user)
+    return this.http.post<Response>(`${baseURL}/login`, user)
   }
 }
